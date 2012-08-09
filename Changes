@@ -1,0 +1,17 @@
+Revision history for LWP-UserAgent-Patch-LogResponse
+
+0.03    2012-08-03 (SHARYANTO)
+
+        No functional changes. Adjust to Module::Patch 0.10 (v=3).
+
+
+0.02    2012-07-17 (SHARYANTO)
+
+        - Adjust to Module::Patch 0.07 (v=2)
+
+        - Add options: -log_response_header, -log_response_body
+
+
+0.01    2012-07-14 (SHARYANTO)
+
+        First release.

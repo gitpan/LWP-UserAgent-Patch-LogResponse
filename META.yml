@@ -1,0 +1,24 @@
+---
+abstract: 'Log raw HTTP responses'
+author:
+  - 'Steven Haryanto <stevenharyanto@gmail.com>'
+build_requires:
+  Module::Build: 0.3601
+configure_requires:
+  Module::Build: 0.3601
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.300006, CPAN::Meta::Converter version 2.113640'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: LWP-UserAgent-Patch-LogResponse
+requires:
+  LWP::UserAgent: 6.04
+  Log::Any: 0
+  Module::Patch: 0.12
+  perl: 5.010001
+resources:
+  homepage: http://metacpan.org/release/LWP-UserAgent-Patch-LogResponse
+  repository: http://github.com/sharyanto/perl-LWP-UserAgent-Patch-LogResponse
+version: 0.03
