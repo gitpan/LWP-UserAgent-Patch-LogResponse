@@ -7,7 +7,7 @@ no warnings;
 use Module::Patch 0.12 qw();
 use base qw(Module::Patch);
 
-our $VERSION = '0.03'; # VERSION
+our $VERSION = '0.04'; # VERSION
 
 our %config;
 
@@ -65,7 +65,7 @@ LWP::UserAgent::Patch::LogResponse - Log raw HTTP responses
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 

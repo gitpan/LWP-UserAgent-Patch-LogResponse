@@ -2,7 +2,7 @@ NAME
     LWP::UserAgent::Patch::LogResponse - Log raw HTTP responses
 
 VERSION
-    version 0.03
+    version 0.04
 
 SYNOPSIS
      use LWP::UserAgent::Patch::LogResponse
