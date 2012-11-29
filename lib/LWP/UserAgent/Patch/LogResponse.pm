@@ -7,7 +7,7 @@ no warnings;
 use Module::Patch 0.12 qw();
 use base qw(Module::Patch);
 
-our $VERSION = '0.05'; # VERSION
+our $VERSION = '0.06'; # VERSION
 
 our %config;
 
@@ -19,16 +19,25 @@ my $p_simple_request = sub {
     my $resp = $orig->(@_);
 
     my $log = Log::Any->get_logger;
-    if ($config{-log_response_header}) {
-        $log->tracef("HTTP response header:\n%s",
-                     $resp->status_line . "\r\n" . $resp->headers->as_string);
-    }
-    if ($config{-log_response_body}) {
-        # XXX or 4, if we're calling request() which calls simple_request()
-        my @caller = caller(3);
-        my $log_b = Log::Any->get_logger(
-            category => "LWP_Response_Body::".$caller[0]);
-        $log_b->trace($resp->content);
+    if ($log->is_trace) {
+
+        # there is no equivalent of caller_depth in Log::Any, so we do this only
+        # for Log4perl
+        local $Log::Log4perl::caller_depth = $Log::Log4perl::caller_depth + 1
+            if $Log::{"Log4perl::"};
+
+        if ($config{-log_response_header}) {
+            $log->tracef("HTTP response header:\n%s",
+                         $resp->status_line."\r\n".$resp->headers->as_string);
+        }
+        if ($config{-log_response_body}) {
+            # XXX or 4, if we're calling request() which calls simple_request()
+            my @caller = caller(3);
+            my $log_b = Log::Any->get_logger(
+                category => "LWP_Response_Body::".$caller[0]);
+            $log_b->trace($resp->content);
+        }
+
     }
 
     $resp;
@@ -65,7 +74,7 @@ LWP::UserAgent::Patch::LogResponse - Log raw HTTP responses
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
@@ -107,6 +116,8 @@ file:
         level          => 'off',
         category_level => {LWP_Response_Body => 'trace'},
     };
+
+=for Pod::Coverage ^(patch_data)$
 
 =head1 FAQ
 
