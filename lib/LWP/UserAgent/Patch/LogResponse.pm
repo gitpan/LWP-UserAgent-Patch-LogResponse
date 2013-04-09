@@ -7,7 +7,7 @@ no warnings;
 use Module::Patch 0.12 qw();
 use base qw(Module::Patch);
 
-our $VERSION = '0.06'; # VERSION
+our $VERSION = '0.07'; # VERSION
 
 our %config;
 
@@ -35,7 +35,13 @@ my $p_simple_request = sub {
             my @caller = caller(3);
             my $log_b = Log::Any->get_logger(
                 category => "LWP_Response_Body::".$caller[0]);
-            $log_b->trace($resp->content);
+            my $content;
+            if ($config{-decode_response_body}) {
+                $content = $resp->decoded_content;
+            } else {
+                $content = $resp->content;
+            }
+            $log_b->trace($content);
         }
 
     }
@@ -55,8 +61,9 @@ sub patch_data {
             },
         ],
         config => {
-            -log_response_header => { default => 1 },
-            -log_response_body   => { default => 0 },
+            -log_response_header  => { default => 1 },
+            -log_response_body    => { default => 0 },
+            -decode_response_body => { default => 1 },
         }
     };
 }
@@ -74,13 +81,14 @@ LWP::UserAgent::Patch::LogResponse - Log raw HTTP responses
 
 =head1 VERSION
 
-version 0.06
+version 0.07
 
 =head1 SYNOPSIS
 
  use LWP::UserAgent::Patch::LogResponse
-     -log_response_header => 1, # default 1
-     -log_response_body   => 1, # default 0
+     -log_response_header     => 1, # default 1
+     -log_response_body       => 1, # default 0
+     -decode_response_content => 1, # default 1, turn off, e.g. to get raw gzipped content
  ;
 
  # now all your LWP HTTP responses are logged
@@ -137,7 +145,7 @@ Steven Haryanto <stevenharyanto@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Steven Haryanto.
+This software is copyright (c) 2013 by Steven Haryanto.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

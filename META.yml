@@ -7,7 +7,7 @@ build_requires:
 configure_requires:
   Module::Build: 0.3601
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300006, CPAN::Meta::Converter version 2.113640'
+generated_by: 'Dist::Zilla version 4.300028, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -21,4 +21,4 @@ requires:
 resources:
   homepage: http://metacpan.org/release/LWP-UserAgent-Patch-LogResponse
   repository: http://github.com/sharyanto/perl-LWP-UserAgent-Patch-LogResponse
-version: 0.06
+version: 0.07
