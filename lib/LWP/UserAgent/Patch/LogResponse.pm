@@ -4,10 +4,10 @@ use 5.010001;
 use strict;
 no warnings;
 
-use Module::Patch 0.12 qw();
+use Module::Patch 0.17 qw();
 use base qw(Module::Patch);
 
-our $VERSION = '0.07'; # VERSION
+our $VERSION = '0.08'; # VERSION
 
 our %config;
 
@@ -81,14 +81,14 @@ LWP::UserAgent::Patch::LogResponse - Log raw HTTP responses
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 SYNOPSIS
 
  use LWP::UserAgent::Patch::LogResponse
-     -log_response_header     => 1, # default 1
-     -log_response_body       => 1, # default 0
-     -decode_response_content => 1, # default 1, turn off, e.g. to get raw gzipped content
+     -log_response_header  => 1, # default 1
+     -log_response_body    => 1, # default 0
+     -decode_response_body => 1, # default 1, turn off, e.g. to get raw gzipped content
  ;
 
  # now all your LWP HTTP responses are logged

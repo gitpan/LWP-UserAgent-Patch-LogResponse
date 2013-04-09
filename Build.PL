@@ -17,7 +17,7 @@ my %module_build_args = (
     "Steven Haryanto <stevenharyanto\@gmail.com>"
   ],
   "dist_name" => "LWP-UserAgent-Patch-LogResponse",
-  "dist_version" => "0.07",
+  "dist_version" => "0.08",
   "license" => "perl",
   "module_name" => "LWP::UserAgent::Patch::LogResponse",
   "recommends" => {},
@@ -25,7 +25,7 @@ my %module_build_args = (
   "requires" => {
     "LWP::UserAgent" => "6.04",
     "Log::Any" => 0,
-    "Module::Patch" => "0.12",
+    "Module::Patch" => "0.17",
     "perl" => "5.010001"
   },
   "script_files" => []
